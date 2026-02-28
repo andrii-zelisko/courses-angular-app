@@ -1,0 +1,100 @@
+<div class="container">
+
+  <h2>{{ isCreating ? 'Create Course' : 'Edit Course' }}</h2>
+
+  <form [formGroup]="courseForm" (ngSubmit)="submit()">
+
+    <!-- TITLE -->
+    <app-input
+      label="Title"
+      placeholder="Input course title">
+    </app-input>
+
+    <!-- DESCRIPTION -->
+    <label>
+      Description
+      <textarea
+        class="description"
+        placeholder="Input text">
+      </textarea>
+    </label>
+
+    <!-- INFO SECTION -->
+    <div class="info-wrapper">
+
+      <!-- LEFT -->
+      <div>
+
+        <div class="duration">
+
+          <app-input
+            label="Duration (minutes)"
+            placeholder="Input text">
+          </app-input>
+
+          <p>{{ getCourseDuration(courseForm.value.duration) }}</p>
+
+        </div>
+
+        <h2>Authors</h2>
+
+        <div class="authors-container">
+
+          <h3>Available Authors</h3>
+
+          @for (author of store.authors; track author.id) {
+            <div class="author-item">
+              <p>{{ author.name }}</p>
+
+              <app-button
+                type="button"
+                [disabled]="courseForm.value.authors.includes(author.id)"
+                (clicked)="addAuthor(author.id)">
+                {{ courseForm.value.authors?.includes(author.id) ? '(+)' : '+' }}
+              </app-button>
+            </div>
+          }
+        </div>
+
+      </div>
+
+      <!-- RIGHT -->
+      <div class="course-authors-container">
+
+        <h2>Course Authors</h2>
+
+        @if (courseForm.value.authors.length > 0) {
+          @for (id of courseForm.value.authors; track id) {
+            <div class="course-author-item">
+              <p>{{ authorName(id) }}</p>
+            </div>
+          }
+        } @else {
+          <ng-template [@else]>
+            <p class="notification">No authors added yet</p>
+          </ng-template>
+        }
+
+      </div>
+
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="buttons-container">
+
+      <app-button
+        type="button"
+        [text]="isCreating ? 'CREATE' : 'UPDATE'"
+        (clicked)="submit()">
+      </app-button>
+
+      <app-button
+        type="button"
+        text="CANCEL"
+        (clicked)="cancel()">
+      </app-button>
+
+    </div>
+
+  </form>
+</div>

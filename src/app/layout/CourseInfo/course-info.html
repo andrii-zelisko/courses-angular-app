@@ -1,0 +1,57 @@
+@if (course) {
+  <div class="course-info-wrapper">
+
+  <h1>{{ course.title }}</h1>
+
+  <div class="course-info-container">
+
+    <p class="description">
+      {{ course.description }}
+    </p>
+
+    <div>
+
+      <p>
+        <b>ID:</b> {{ course.id }}
+      </p>
+
+      <p>
+        <b>Duration:</b> {{ duration }}
+      </p>
+
+      <p>
+        <b>Created:</b> {{ created }}
+      </p>
+
+      <div>
+        <b>Authors:</b>
+
+        <ul class="authors-list">
+          @for (author of authors; track author.id) {
+            <li>{{ author.name }}</li>
+          }
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+
+  <a routerLink="/courses" class="back-button">
+    <app-button [text]="BUTTON_NAMES.BACK"></app-button>
+  </a>
+
+</div>
+} @else {
+  <ng-template>
+
+    <div class="course-info-wrapper">
+    <p>Course not found</p>
+
+    <a routerLink="/courses">
+      <app-button [text]="BUTTON_NAMES.BACK"></app-button>
+    </a>
+    </div>
+
+  </ng-template>
+}

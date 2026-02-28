@@ -1,0 +1,52 @@
+<div class="login-container">
+
+  <h1>Login</h1>
+
+  <form class="form-container" [formGroup]="loginForm" (ngSubmit)="login()">
+
+    <app-input
+      label="Email"
+      placeholder="Enter your email"
+      type="email">
+    </app-input>
+
+    <app-input
+      label="Password"
+      placeholder="Enter your password"
+      type="password">
+    </app-input>
+
+    <!-- Validation Errors -->
+    @if (loginForm.controls.email.invalid) {
+      <p class="error-message">
+        Valid email required
+      </p>
+    }
+
+    @if (loginForm.controls.password.invalid) {
+      <p class="error-message">
+        Password must be at least 8 characters
+      </p>
+    }
+
+    @if (commonError) {
+      <p class="error-message">
+        {{ commonError }}
+      </p>
+    }
+
+    <!-- Submit -->
+    <app-button
+      type="submit"
+      [disabled]="isLoading"
+      [text]="isLoading ? 'Logging in...' : BUTTON_NAMES.LOGIN">
+    </app-button>
+
+    <!-- Register Link -->
+    <p class="register-link">
+      Don't have an account?
+      <a (click)="goToRegister()">Register here</a>
+    </p>
+
+  </form>
+</div>

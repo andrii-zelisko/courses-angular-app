@@ -1,0 +1,43 @@
+<div class="card-container">
+
+  <div class="card-text">
+    <h2>{{ course.title }}</h2>
+    <p>{{ course.description }}</p>
+  </div>
+
+  <div class="card-details">
+
+    <p>
+      <b>Authors:</b>
+      {{ authors }}
+    </p>
+
+    <p>
+      <b>Duration:</b>
+      <span>{{ duration }}</span>
+    </p>
+
+    <p>
+      <b>Created:</b>
+      <span>{{ creationDate }}</span>
+    </p>
+
+    <div class="buttons-container">
+
+      <a [routerLink]="['/courses', course.id]">
+        <app-button [text]="BUTTON_NAMES.SHOW_COURSE"></app-button>
+      </a>
+
+      <a (click)="removeCourse()">
+        <img [src]="deleteIcon" />
+      </a>
+
+      <a [routerLink]="['/courses/update', course.id]">
+        <img [src]="editIcon" />
+      </a>
+
+    </div>
+
+  </div>
+
+</div>

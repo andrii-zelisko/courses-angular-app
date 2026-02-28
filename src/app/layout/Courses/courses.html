@@ -1,0 +1,37 @@
+<div class="courses-wrapper">
+
+  <div class="courses-header">
+    <h1>Courses</h1>
+
+    <app-button
+      [text]="BUTTON_NAMES.ADD_NEW_COURSE"
+      (clicked)="handleAddCourse()">
+    </app-button>
+
+  </div>
+
+  <div class="search-bar">
+    <input
+      type="text"
+      placeholder="Search courses by title or description..."
+      [value]="searchQuery"
+      (input)="handleSearch($event)"
+      class="search-input"
+    />
+  </div>
+
+  @if (filteredCourses.length > 0) {
+    @for (course of filteredCourses; track course.id) {
+        <app-course-card
+          [course]="course">
+        </app-course-card>
+    }
+  } @else {
+    <ng-template>
+      <div class="empty-state">
+        <app-empty-courses></app-empty-courses>
+      </div>
+    </ng-template>
+  }
+
+</div>

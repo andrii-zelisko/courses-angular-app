@@ -1,0 +1,10 @@
+<label class="input-label">
+  <span class="label-text">{{ label }}</span>
+  <input
+    [type]="type"
+    [placeholder]="placeholder"
+    [value]="value"
+    (input)="onInput($event)"
+  />
+  <span class="error-text">{{ error }}</span>
+</label>
