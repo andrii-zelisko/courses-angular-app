@@ -30,9 +30,10 @@
           <app-input
             label="Duration (minutes)"
             placeholder="Input text">
+            type="number"
           </app-input>
 
-          <p>{{ getCourseDuration(courseForm.value.duration) }}</p>
+          <p>{{ getCourseDuration(Number(courseForm.value.duration)) }}</p>
 
         </div>
 
@@ -48,9 +49,8 @@
 
               <app-button
                 type="button"
-                [disabled]="courseForm.value.authors.includes(author.id)"
                 (clicked)="addAuthor(author.id)">
-                {{ courseForm.value.authors?.includes(author.id) ? '(+)' : '+' }}
+                {{ '+' }}
               </app-button>
             </div>
           }
@@ -63,7 +63,7 @@
 
         <h2>Course Authors</h2>
 
-        @if (courseForm.value.authors.length > 0) {
+        @if (courseForm.value.authors && courseForm.value.authors.length > 0) {
           @for (id of courseForm.value.authors; track id) {
             <div class="course-author-item">
               <p>{{ authorName(id) }}</p>

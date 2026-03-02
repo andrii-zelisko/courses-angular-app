@@ -33,8 +33,8 @@ export class CoursesComponent {
     this.searchQuery = value;
 
     this.filteredCourses = this.courses.filter(course =>
-      course.title.toLowerCase().includes(value) ||
-      course.description.toLowerCase().includes(value)
+      course.title?.toLowerCase().includes(value) ||
+      course.description?.toLowerCase().includes(value)
     );
   }
 }

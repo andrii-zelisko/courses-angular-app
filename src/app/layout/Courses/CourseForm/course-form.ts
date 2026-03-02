@@ -35,7 +35,9 @@ export class CourseFormComponent implements OnInit {
     if (id && id !== 'create') {
       this.isCreating = false;
       const course = this.store.getCourseById(id);
-      if (course) this.courseForm.patchValue(course);
+      if (course) { // @ts-ignore
+        this.courseForm.patchValue(course);
+      }
     }
   }
 
@@ -58,7 +60,7 @@ export class CourseFormComponent implements OnInit {
   submit(): void {
     if (this.courseForm.invalid) return;
 
-    const data: Course = this.courseForm.value;
+    const data = this.courseForm.value;
 
     if (this.isCreating) {
       this.store.addCourse({
@@ -67,7 +69,7 @@ export class CourseFormComponent implements OnInit {
         creationDate: getCurrentDateFormatted()
       });
     } else {
-      this.store.updateCourse(data.id, data);
+      this.store.updateCourse(data?.id, data);
     }
 
     this.router.navigate(['/courses']);
@@ -80,4 +82,6 @@ export class CourseFormComponent implements OnInit {
   authorName(id: string): string | undefined {
     return this.store.authors.find(a => a.id === id)?.name;
   }
+
+  protected readonly Number = Number;
 }

@@ -33,14 +33,14 @@ export class CourseCardComponent {
   }
 
   get duration(): string {
-    return getCourseDuration(this.course.duration);
+    return getCourseDuration(Number(this.course.duration));
   }
 
   get creationDate(): string {
-    return formatCreationDate(this.course.creationDate);
+    return formatCreationDate(String(this.course.creationDate));
   }
 
   removeCourse(): void {
-    this.store.deleteCourse(this.course.id);
+    this.store.deleteCourse(String(this.course.id));
   }
 }

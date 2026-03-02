@@ -37,10 +37,10 @@ export class CourseInfoComponent implements OnInit {
   }
 
   get duration(): string {
-    return this.course ? getCourseDuration(this.course.duration) : 'N/A';
+    return this.course ? getCourseDuration(Number(this.course.duration)) : 'N/A';
   }
 
   get created(): string {
-    return this.course ? formatCreationDate(this.course.creationDate) : 'N/A';
+    return this.course ? formatCreationDate(String(this.course.creationDate)) : 'N/A';
   }
 }
