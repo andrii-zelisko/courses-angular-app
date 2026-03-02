@@ -19,8 +19,10 @@ export class CourseCardComponent {
 
   BUTTON_NAMES = BUTTON_NAMES;
 
-  deleteIcon = 'assets/images/delete-icon.png';
-  editIcon = 'assets/images/edit-icon.png';
+  baseUrl = 'http://localhost:4200';
+
+  deleteIcon = `${this.baseUrl}/assets/images/delete-icon.png`;
+  editIcon = `${this.baseUrl}/assets/images/edit-icon.png`;
 
   constructor(public store: CourseStoreService) {}
 

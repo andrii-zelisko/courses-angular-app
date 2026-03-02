@@ -5,13 +5,14 @@ import { EmptyCoursesComponent } from './EmptyCourses/empty-courses';
 
 import { Course } from '../../models/course.model';
 import { MOCKED_COURSES_LIST } from '../../data/mock-courses';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-courses',
   templateUrl: 'courses.html',
   styleUrls: ['courses.scss'],
   standalone: true,
-  imports: [ButtonComponent, CourseCardComponent, EmptyCoursesComponent]
+  imports: [ButtonComponent, CourseCardComponent, EmptyCoursesComponent, RouterLink]
 })
 export class CoursesComponent {
 
@@ -23,10 +24,6 @@ export class CoursesComponent {
 
   courses: Course[] = [...MOCKED_COURSES_LIST];
   filteredCourses: Course[] = [...this.courses];
-
-  handleAddCourse() {
-    console.log('Add course clicked');
-  }
 
   handleSearch(event: Event) {
     const value = (event.target as HTMLInputElement).value.toLowerCase();

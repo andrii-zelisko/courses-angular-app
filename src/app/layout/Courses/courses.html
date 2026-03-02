@@ -3,10 +3,9 @@
   <div class="courses-header">
     <h1>Courses</h1>
 
-    <app-button
-      [text]="BUTTON_NAMES.ADD_NEW_COURSE"
-      (clicked)="handleAddCourse()">
-    </app-button>
+    <a [routerLink]="['/courses/create']">
+      <app-button [text]="BUTTON_NAMES.ADD_NEW_COURSE"></app-button>
+    </a>
 
   </div>
 

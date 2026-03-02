@@ -38,6 +38,8 @@ export class CourseFormComponent implements OnInit {
       if (course) { // @ts-ignore
         this.courseForm.patchValue(course);
       }
+    } else {
+      this.isCreating = true;
     }
   }
 

@@ -1,13 +1,11 @@
-import {Component, inject} from '@angular/core';
-import {NgOptimizedImage} from '@angular/common';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-logo',
-  templateUrl: './logo.html',
-  imports: [
-    NgOptimizedImage
-  ],
-  styleUrls: ['./logo.scss']
+  templateUrl: 'logo.html',
+  styleUrls: ['logo.scss']
 })
 
-export class LogoComponent {}
+export class LogoComponent {
+  logoPath = `/assets/images/logo.png`;
+}
