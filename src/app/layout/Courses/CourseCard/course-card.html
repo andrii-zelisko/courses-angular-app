@@ -28,7 +28,7 @@
         <app-button [text]="BUTTON_NAMES.SHOW_COURSE"></app-button>
       </a>
 
-      <a (click)="removeCourse()">
+      <a (click)="removeCourse(course.id)">
         <img [src]="deleteIcon" alt="Delete Icon"/>
       </a>
 

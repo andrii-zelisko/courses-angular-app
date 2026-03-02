@@ -3,9 +3,9 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators, ɵValue} from 
 import { ActivatedRoute, Router } from '@angular/router';
 import { CourseStoreService } from '../../../services/course-store.service';
 import { generateUUID, getCurrentDateFormatted } from '../../../utils/utils';
-import { Course } from '../../../models/course.model';
 import { ButtonComponent } from '../../../shared/components/Button/button';
 import { InputComponent } from '../../../shared/components/Input/input';
+import {Course} from '../../../models/course.model';
 
 @Component({
   selector: 'app-course-form',
@@ -13,6 +13,7 @@ import { InputComponent } from '../../../shared/components/Input/input';
   styleUrls: ['course-form.scss'],
   imports: [ButtonComponent, InputComponent, ReactiveFormsModule]
 })
+
 export class CourseFormComponent implements OnInit {
   constructor(
     public store: CourseStoreService,
@@ -67,11 +68,15 @@ export class CourseFormComponent implements OnInit {
     if (this.isCreating) {
       this.store.addCourse({
         ...data,
+        duration: Number(data.duration),
         id: generateUUID(),
         creationDate: getCurrentDateFormatted()
       });
     } else {
-      this.store.updateCourse(data?.id, data);
+      this.store.updateCourse(data.id!, {
+        ...data,
+        duration: Number(data.duration)
+      } as unknown as Course);
     }
 
     this.router.navigate(['/courses']);

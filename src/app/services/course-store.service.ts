@@ -17,35 +17,16 @@ export class CourseStoreService {
     return this.courses.find(c => c.id === id);
   }
 
-  addCourse(course: {
-    id: string;
-    title?: ɵValue<FormControl<string | null>>;
-    description?: ɵValue<FormControl<string | null>>;
-    duration?: ɵValue<FormControl<string | null>>;
-    authors?: ɵValue<FormControl<any[] | null>>;
-    creationDate: string
-  }) {
-    // @ts-ignore
+  addCourse(course: Course): void {
     this.courses.push(course);
   }
 
-  updateCourse(id: ɵValue<FormControl<string | null>> | undefined, updated: ɵTypedOrUntyped<{
-    id: FormControl<string | null>;
-    title: FormControl<string | null>;
-    description: FormControl<string | null>;
-    duration: FormControl<string | null>;
-    authors: FormControl<any[] | null>
-  }, ɵFormGroupValue<{
-    id: FormControl<string | null>;
-    title: FormControl<string | null>;
-    description: FormControl<string | null>;
-    duration: FormControl<string | null>;
-    authors: FormControl<any[] | null>
-  }>, any>) {
-    const index = this.courses.findIndex(c => c.id === id);
-    if (index !== -1) {
-      this.courses[index] = <Course>{...this.courses[index], ...updated};
-    }
+  updateCourse(id: string, updated: Course): void {
+    this.courses = this.courses.map(course =>
+      course.id === id
+        ? { ...course, ...updated, duration: updated.duration ? Number(updated.duration) : course.duration }
+        : course
+    );
   }
 
   deleteCourse(id: string) {

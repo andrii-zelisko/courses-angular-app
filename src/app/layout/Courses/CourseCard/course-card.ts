@@ -42,7 +42,7 @@ export class CourseCardComponent {
     return formatCreationDate(String(this.course.creationDate));
   }
 
-  removeCourse(): void {
-    this.store.deleteCourse(String(this.course.id));
+  removeCourse(courseId: string): void {
+    this.store.deleteCourse(String(courseId));
   }
 }
