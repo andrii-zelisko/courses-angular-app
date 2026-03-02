@@ -8,6 +8,3 @@ export interface ButtonNames {
   BACK: string,
   UPDATE_COURSE: string
 }
-
-export class BUTTON_NAMES {
-}

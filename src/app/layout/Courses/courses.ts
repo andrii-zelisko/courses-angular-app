@@ -2,19 +2,20 @@ import { Component } from '@angular/core';
 import { ButtonComponent } from '../../shared/components/Button/button';
 import { CourseCardComponent } from './CourseCard/course-card';
 import { EmptyCoursesComponent } from './EmptyCourses/empty-courses';
-
+import { Router} from '@angular/router';
 import { Course } from '../../models/course.model';
 import { MOCKED_COURSES_LIST } from '../../data/mock-courses';
-import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-courses',
   templateUrl: 'courses.html',
   styleUrls: ['courses.scss'],
   standalone: true,
-  imports: [ButtonComponent, CourseCardComponent, EmptyCoursesComponent, RouterLink]
+  imports: [ButtonComponent, CourseCardComponent, EmptyCoursesComponent]
 })
 export class CoursesComponent {
+
+  constructor(private router: Router) {}
 
   searchQuery = '';
 
@@ -24,6 +25,10 @@ export class CoursesComponent {
 
   courses: Course[] = [...MOCKED_COURSES_LIST];
   filteredCourses: Course[] = [...this.courses];
+
+  handleAddCourse() {
+    this.router.navigate(['/courses/create']);
+  }
 
   handleSearch(event: Event) {
     const value = (event.target as HTMLInputElement).value.toLowerCase();

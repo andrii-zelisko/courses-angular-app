@@ -2,10 +2,7 @@
 
   <div class="courses-header">
     <h1>Courses</h1>
-
-    <a routerLink="/courses/create">
-      <app-button [text]="BUTTON_NAMES.ADD_NEW_COURSE"></app-button>
-    </a>
+    <app-button [text]="BUTTON_NAMES.ADD_NEW_COURSE" (clicked)="handleAddCourse()"></app-button>
 
   </div>
 

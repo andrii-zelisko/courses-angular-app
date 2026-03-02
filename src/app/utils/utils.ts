@@ -1,26 +1,13 @@
-// shared/utils/date-time.utils.ts
-
-/**
- * Pads number with leading zero
- */
 export function padZero(value: number): string {
   return value < 10 ? `0${value}` : `${value}`;
 }
 
-
-/**
- * Formats date → MM.DD.YYYY
- */
 export function formatCreationDate(date: string | Date): string {
   const d = new Date(date);
 
   return `${padZero(d.getMonth() + 1)}.${padZero(d.getDate())}.${d.getFullYear()}`;
 }
 
-
-/**
- * Generates UUID v4-like id
- */
 export function generateUUID(): string {
   if (crypto?.randomUUID) {
     return crypto.randomUUID(); // preferred modern way
@@ -44,10 +31,6 @@ export function generateUUID(): string {
   });
 }
 
-
-/**
- * Converts minutes → HH:MM hours
- */
 export function getCourseDuration(duration: number): string {
   const hours = Math.floor(duration / 60);
   const minutes = duration % 60;
@@ -55,10 +38,6 @@ export function getCourseDuration(duration: number): string {
   return `${padZero(hours)}:${padZero(minutes)} ${hours === 1 ? 'hour' : 'hours'}`;
 }
 
-
-/**
- * Returns current date → MM/DD/YYYY
- */
 export function getCurrentDateFormatted(): string {
   const date = new Date();
 

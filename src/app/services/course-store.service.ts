@@ -4,7 +4,6 @@ import { Author } from '../models/author.model';
 import { User } from '../models/user.model';
 import { MOCKED_COURSES_LIST } from '../data/mock-courses';
 import { MOCKED_AUTHORS_LIST } from '../data/mock-authors';
-import {FormControl, ɵFormGroupValue, ɵTypedOrUntyped, ɵValue} from '@angular/forms';
 
 @Injectable({ providedIn: 'root' })
 export class CourseStoreService {
