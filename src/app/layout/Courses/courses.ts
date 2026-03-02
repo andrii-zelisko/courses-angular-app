@@ -50,9 +50,9 @@ export class CoursesComponent implements OnInit {
     const value = (event.target as HTMLInputElement).value.toLowerCase();
     this.searchQuery = value;
 
-    this.filteredCourses = this.courses.filter(course =>
-      course.title?.toLowerCase().includes(value) ||
-      course.description?.toLowerCase().includes(value)
+    this.filteredCourses = this.store.getCoursesList().filter(c =>
+      c.title?.toLowerCase().includes(value) ||
+      c.description?.toLowerCase().includes(value)
     );
   }
 }
