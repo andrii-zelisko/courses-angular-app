@@ -1,30 +1,32 @@
 <div class="courses-wrapper">
 
-  <div class="courses-header">
-    <h1>Courses</h1>
-    <app-button [text]="BUTTON_NAMES.ADD_NEW_COURSE" (clicked)="handleAddCourse()"></app-button>
+  @if (filteredCourses.length > 0 ) {
 
-  </div>
+    <div class="courses-header">
+      <h1>Courses</h1>
+      <app-button [text]="BUTTON_NAMES.ADD_NEW_COURSE" (clicked)="handleAddCourse()"></app-button>
+    </div>
 
-  <div class="search-bar">
-    <input
-      type="text"
-      placeholder="Search courses by title or description..."
-      [value]="searchQuery"
-      (input)="handleSearch($event)"
-      class="search-input"
-    />
-  </div>
+    <div class="search-bar">
+      <input
+        type="text"
+        placeholder="Search courses by title or description..."
+        [value]="searchQuery"
+        (input)="handleSearch($event)"
+        class="search-input"
+      />
+    </div>
 
-  @if (filteredCourses.length > 0) {
     @for (course of filteredCourses; track course.id) {
         <app-course-card
           [course]="course"
           (delete)="deleteCourse($event)">
         </app-course-card>
     }
-  } @else {
-    <app-empty-courses></app-empty-courses>
-  }
 
+  } @else {
+
+    <app-empty-courses></app-empty-courses>
+
+  }
 </div>
