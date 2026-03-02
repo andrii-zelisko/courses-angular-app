@@ -5,6 +5,7 @@ import { CourseStoreService } from '../../../services/course-store.service';
 import { BUTTON_NAMES } from '../../../services/button-names-store.service';
 import {ButtonComponent} from '../../../shared/components/Button/button';
 import {InputComponent} from '../../../shared/components/Input/input';
+import {AuthService} from '../../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,8 @@ export class LoginComponent {
 
   constructor(
     private router: Router,
-    private store: CourseStoreService
+    private store: CourseStoreService,
+    private authService: AuthService
   ) {}
 
   login() {
@@ -51,10 +53,10 @@ export class LoginComponent {
         return;
       }
 
-      localStorage.setItem('token', JSON.stringify({
+      this.authService.login({
         email: user.email,
         name: user.name
-      }));
+      });
 
       this.router.navigate(['/courses']);
       this.isLoading = false;

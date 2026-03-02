@@ -1,21 +1,25 @@
-import {Component} from '@angular/core';
-import {LogoComponent} from '../../shared/components/Logo/logo';
-import {ButtonComponent} from '../../shared/components/Button/button';
-import {BUTTON_NAMES} from '../../services/button-names-store.service';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { LogoComponent } from '../../shared/components/Logo/logo';
+import { ButtonComponent } from '../../shared/components/Button/button';
+import { BUTTON_NAMES } from '../../services/button-names-store.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
+  standalone: true,
   templateUrl: './header.html',
   styleUrls: ['./header.scss'],
-  imports: [LogoComponent, ButtonComponent]
+  imports: [CommonModule, LogoComponent, ButtonComponent]
 })
 
 export class HeaderComponent {
-  userName: string = localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')!).name : '';
-  protected readonly BUTTON_NAMES = BUTTON_NAMES;
+
+  BUTTON_NAMES = BUTTON_NAMES;
+
+  constructor(public auth: AuthService) {}
 
   logout(): void {
-    localStorage.removeItem('token');
-    window.location.reload();
+    this.auth.logout();
   }
 }
