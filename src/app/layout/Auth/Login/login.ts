@@ -51,7 +51,7 @@ export class LoginComponent {
         return;
       }
 
-      localStorage.setItem('user', JSON.stringify({
+      localStorage.setItem('token', JSON.stringify({
         email: user.email,
         name: user.name
       }));

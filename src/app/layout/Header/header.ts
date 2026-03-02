@@ -11,6 +11,11 @@ import {BUTTON_NAMES} from '../../services/button-names-store.service';
 })
 
 export class HeaderComponent {
-  userName: string = 'John Doe';
+  userName: string = localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')!).name : '';
   protected readonly BUTTON_NAMES = BUTTON_NAMES;
+
+  logout(): void {
+    localStorage.removeItem('token');
+    window.location.reload();
+  }
 }

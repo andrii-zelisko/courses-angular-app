@@ -5,7 +5,7 @@
   <div class="user-container">
     <div class="user-info">
       <span class="user-name">{{ userName }}</span>
-      <app-button [text]=BUTTON_NAMES.LOGOUT></app-button>
+      <app-button [text]=BUTTON_NAMES.LOGOUT (clicked)="logout()"></app-button>
     </div>
   </div>
 </header>

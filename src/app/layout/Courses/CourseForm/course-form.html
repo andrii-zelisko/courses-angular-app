@@ -5,7 +5,7 @@
     <!-- TITLE -->
     <app-input
       label="Title"
-      placeholder="Input course title">
+      placeholder="Input course title" formControlName="title">
     </app-input>
 
     <!-- DESCRIPTION -->
@@ -13,7 +13,7 @@
       Description
       <textarea
         class="description"
-        placeholder="Input text">
+        placeholder="Input text" formControlName="description">
       </textarea>
     </label>
 
@@ -27,8 +27,9 @@
 
           <app-input
             label="Duration (minutes)"
-            placeholder="Input text">
+            placeholder="Input text"
             type="number"
+            formControlName="duration">
           </app-input>
 
           <p>{{ getCourseDuration(Number(courseForm.value.duration)) }}</p>

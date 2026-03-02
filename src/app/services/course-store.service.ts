@@ -12,6 +12,10 @@ export class CourseStoreService {
   courses: Course[] = [...MOCKED_COURSES_LIST];
   authors: Author[] = [...MOCKED_AUTHORS_LIST];
 
+  getCoursesList(): Course[] {
+    return this.courses;
+  }
+
   getCourseById(id: string): Course | undefined {
     return this.courses.find(c => c.id === id);
   }

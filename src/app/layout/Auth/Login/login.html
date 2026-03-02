@@ -7,27 +7,16 @@
     <app-input
       label="Email"
       placeholder="Enter your email"
-      type="email">
+      type="email"
+      formControlName="email">
     </app-input>
 
     <app-input
       label="Password"
       placeholder="Enter your password"
-      type="password">
+      type="password"
+      formControlName="password">
     </app-input>
-
-    <!-- Validation Errors -->
-    @if (loginForm.controls.email.invalid) {
-      <p class="error-message">
-        Valid email required
-      </p>
-    }
-
-    @if (loginForm.controls.password.invalid) {
-      <p class="error-message">
-        Password must be at least 8 characters
-      </p>
-    }
 
     @if (commonError) {
       <p class="error-message">
@@ -35,18 +24,15 @@
       </p>
     }
 
-    <!-- Submit -->
     <app-button
       type="submit"
-      [disabled]="isLoading"
+      [disabled]="!loginForm.valid">"
       [text]="isLoading ? 'Logging in...' : BUTTON_NAMES.LOGIN">
     </app-button>
 
-    <!-- Register Link -->
     <p class="register-link">
       Don't have an account?
       <a (click)="goToRegister()">Register here</a>
     </p>
-
   </form>
 </div>

@@ -9,11 +9,11 @@
 	"projects": {
 		"courses-angular-app": {
 			"projectType": "application",
-			"schematics": {
-				"@schematics/angular:component": {
-					"style": "scss"
-				}
-			},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
 			"root": "",
 			"sourceRoot": "src",
 			"prefix": "app",

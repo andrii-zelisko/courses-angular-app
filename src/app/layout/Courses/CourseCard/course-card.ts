@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ButtonComponent } from '../../../shared/components/Button/button';
 import { CourseStoreService } from '../../../services/course-store.service';
@@ -16,6 +16,7 @@ import { Course } from '../../../models/course.model';
 export class CourseCardComponent {
 
   @Input() course!: Course;
+  @Output() delete = new EventEmitter<string>();
 
   BUTTON_NAMES = BUTTON_NAMES;
 
@@ -42,7 +43,7 @@ export class CourseCardComponent {
     return formatCreationDate(String(this.course.creationDate));
   }
 
-  removeCourse(courseId: string): void {
-    this.store.deleteCourse(String(courseId));
+  removeCourse(): void {
+    this.delete.emit(this.course.id);
   }
 }

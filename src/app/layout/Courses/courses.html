@@ -19,7 +19,8 @@
   @if (filteredCourses.length > 0) {
     @for (course of filteredCourses; track course.id) {
         <app-course-card
-          [course]="course">
+          [course]="course"
+          (delete)="deleteCourse($event)">
         </app-course-card>
     }
   } @else {
